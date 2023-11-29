@@ -1,0 +1,143 @@
+/* fonts */
+@font-face {
+  font-family: Satoshi-Regular;
+  src: url(fonts/Satoshi-Regular.woff);
+}
+@font-face {
+  font-family: Satoshi-Medium;
+  src: url(fonts/Satoshi-Medium.woff);
+}
+
+/* root */
+:root {
+  --light: #f5f5f5;
+  --dark: #171717;
+  --ease: 250ms cubic-bezier(.75, .25, .25, .75);
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: .5rem;
+  height: .5rem;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--light);
+}
+
+/* req */
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+a {
+  display: block;
+  color: var(--dark);
+  text-decoration: none;
+}
+img {
+  aspect-ratio: 4/5;
+}
+
+/* body */
+body {
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--light);
+  color: var(--dark);
+  font-family: Satoshi-Regular;
+  user-select: none;
+  background: linear-gradient(22.5deg, #fef3c7, #fecdd3);;
+}
+
+/* header */
+header {
+  position: fixed;
+  top: 4rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-family: Satoshi-Medium;
+  font-size: 2rem;
+}
+
+/* main */
+main {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* link */
+.link {
+  position: relative;
+}
+.link a {
+  position: relative;
+  font-size: 1.25rem;
+  transition: all var(--ease);
+}
+.link-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16rem;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  overflow: hidden;
+}
+.link-wrapper img {
+  width: 100%;
+  opacity: 0;
+}
+
+/* link active */
+.link a.active {
+  transform: scale(1.5);
+  color: var(--light);
+  mix-blend-mode: difference;
+  z-index: 2;
+}
+.link a.active + .link-wrapper {
+  z-index: 1;
+}
+.link a.active + .link-wrapper img {
+  transform: translate(0, 0);
+  animation: slideIn var(--ease) forwards;
+}
+.link a:not(.active) + .link-wrapper img {
+  animation: slideOut var(--ease);
+}
+@keyframes slideIn {
+  0% {
+    transform: translate(-100%, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 0);
+    opacity: 1;
+  }
+}
+
+/* footer */
+footer {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
